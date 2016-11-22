@@ -16,10 +16,12 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    @action  = "Create"
   end
 
   # GET /products/1/edit
   def edit
+    @action = "Update"
   end
 
   # POST /products
@@ -64,7 +66,7 @@ class ProductsController < ApplicationController
 
   def filter_products
     @products = Product.where(category_id: params[:category_id].to_i)
-    
+
     respond_to do |format|
       format.js {}
     end
